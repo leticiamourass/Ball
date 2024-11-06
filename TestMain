@@ -1,0 +1,40 @@
+public class TestePrincipal {
+    public static void main(String[] args) {
+        // Testar construtor e toString()
+        Ball bola = new Ball(1.1f, 2.2f, 10, 3.3f, 4.4f);
+        System.out.println(bola);  // toString()
+
+        // Testar Setters e Getters
+        bola.setX(80.0f);
+        bola.setY(35.0f);
+        bola.setRaio(5);
+        bola.setDeltaX(4.0f);
+        bola.setDeltaY(6.0f);
+        System.out.println(bola);  // toString()
+        System.out.println("x é: " + bola.getX());
+        System.out.println("y é: " + bola.getY());
+        System.out.println("raio é: " + bola.getRaio());
+        System.out.println("deltaX é: " + bola.getDeltaX());
+        System.out.println("deltaY é: " + bola.getDeltaY());
+
+        // Refletir a bola dentro do limite
+        float xMin = 0.0f;
+        float xMax = 100.0f;
+        float yMin = 0.0f;
+        float yMax = 50.0f;
+        for (int i = 0; i < 15; i++) {
+            bola.mover();
+            System.out.println(bola);
+            float xNovo = bola.getX();
+            float yNovo = bola.getY();
+            int raio = bola.getRaio();
+            // Verificar valor limite para refletir de volta
+            if ((xNovo + raio) > xMax || (xNovo - raio) < xMin) {
+                bola.refletirHorizontal();
+            }
+            if ((yNovo + raio) > yMax || (yNovo - raio) < yMin) {
+                bola.refletirVertical();
+            }
+        }
+    }
+}
