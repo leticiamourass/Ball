@@ -1,68 +1,68 @@
 public class Ball {
     private float x, y;
-    private int radius;
-    private float speed, directionInDegree; // speed (magnitude) and direction in degrees
-    private float xDelta, yDelta; // deltas in cartesian coordinates
+    private int raio;
+    private float velocidade, direcaoEmGraus; // velocidade (magnitude) e direção em graus
+    private float deltaX, deltaY; // deltas em coordenadas cartesianas
 
-    // Constructor using cartesian deltas
-    public Ball(float x, float y, int radius, float xDelta, float yDelta) {
+    // Construtor usando deltas cartesianas
+    public Ball(float x, float y, int raio, float deltaX, float deltaY) {
         this.x = x;
         this.y = y;
-        this.radius = radius;
-        this.xDelta = xDelta;
-        this.yDelta = yDelta;
+        this.raio = raio;
+        this.deltaX = deltaX;
+        this.deltaY = deltaY;
     }
 
-    // Constructor using polar coordinates (speed and direction)
-    public Ball(float x, float y, int radius, int speed, int directionInDegree) {
+    // Construtor usando coordenadas polares (velocidade e direção)
+    public Ball(float x, float y, int raio, int velocidade, int direcaoEmGraus) {
         this.x = x;
         this.y = y;
-        this.radius = radius;
-        this.speed = speed;
-        this.directionInDegree = directionInDegree;
-        // Convert polar to cartesian coordinates
-        this.xDelta = (float) (speed * Math.cos(Math.toRadians(directionInDegree)));
-        this.yDelta = (float) (speed * Math.sin(Math.toRadians(directionInDegree)));
+        this.raio = raio;
+        this.velocidade = velocidade;
+        this.direcaoEmGraus = direcaoEmGraus;
+        // Converte polar para cartesiano
+        this.deltaX = (float) (velocidade * Math.cos(Math.toRadians(direcaoEmGraus)));
+        this.deltaY = (float) (velocidade * Math.sin(Math.toRadians(direcaoEmGraus)));
     }
 
-    // Getters and setters
+    // Métodos Getters e Setters
     public float getX() { return x; }
     public void setX(float x) { this.x = x; }
 
     public float getY() { return y; }
     public void setY(float y) { this.y = y; }
 
-    public int getRadius() { return radius; }
-    public void setRadius(int radius) { this.radius = radius; }
+    public int getRaio() { return raio; }
+    public void setRaio(int raio) { this.raio = raio; }
 
-    public float getXDelta() { return xDelta; }
-    public void setXDelta(float xDelta) { this.xDelta = xDelta; }
+    public float getDeltaX() { return deltaX; }
+    public void setDeltaX(float deltaX) { this.deltaX = deltaX; }
 
-    public float getYDelta() { return yDelta; }
-    public void setYDelta(float yDelta) { this.yDelta = yDelta; }
+    public float getDeltaY() { return deltaY; }
+    public void setDeltaY(float deltaY) { this.deltaY = deltaY; }
 
-    public int getSpeed() { return (int) speed; }
-    public int getDirectionInDegree() { return (int) directionInDegree; }
+    public int getVelocidade() { return (int) velocidade; }
+    public int getDirecaoEmGraus() { return (int) direcaoEmGraus; }
 
-    // Move the ball
-    public void move() {
-        x += xDelta;
-        y += yDelta;
+    // Mover a bola
+    public void mover() {
+        x += deltaX;
+        y += deltaY;
     }
 
-    // Reflect horizontally (reverse x direction)
-    public void reflectHorizontal() {
-        xDelta = -xDelta;
+    // Refletir horizontalmente (inverter direção de x)
+    public void refletirHorizontal() {
+        deltaX = -deltaX;
     }
 
-    // Reflect vertically (reverse y direction)
-    public void reflectVertical() {
-        yDelta = -yDelta;
+    // Refletir verticalmente (inverter direção de y)
+    public void refletirVertical() {
+        deltaY = -deltaY;
     }
 
-    // toString method to represent the Ball object
+    // Método toString para representar a Bola
     @Override
     public String toString() {
-        return String.format("Ball[(%.1f,%.1f),speed=(%.1f,%.1f)]", x, y, xDelta, yDelta);
+        return String.format("Ball[(%.1f,%.1f),speed=(%.1f,%.1f)]", x, y, deltaX, deltaY);
     }
 }
